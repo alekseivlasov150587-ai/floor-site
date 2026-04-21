@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<title>Бетонные полы + клининг СПб</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body{margin:0;font-family:Arial;}
+header{background:#222;color:#fff;text-align:center;padding:90px 20px;}
+h1{font-size:34px;}
+.btn{background:#ff7a00;color:#fff;padding:14px 25px;text-decoration:none;border-radius:6px;display:inline-block;margin-top:10px;}
+section{padding:50px 20px;max-width:1100px;margin:auto;}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px;}
+.card{background:#f4f4f4;padding:20px;border-radius:10px;text-align:center;}
+input,select,button{padding:12px;border-radius:5px;border:1px solid #ccc;}
+button{background:#ff7a00;color:white;border:none;cursor:pointer;}
+footer{background:#222;color:white;text-align:center;padding:20px;}
+.tg{position:fixed;bottom:20px;right:20px;background:#2AABEE;color:#fff;padding:15px;border-radius:50px;text-decoration:none;}
+.call{position:fixed;bottom:80px;right:20px;background:#007bff;color:#fff;padding:15px;border-radius:50px;text-decoration:none;}
+</style>
+</head>
+
+<body>
+
+<header>
+<h1>Бетонные полы под ключ</h1>
+<p>от <b>3 000 ₽/м²</b> + клининг • СПб и ЛО</p>
+<a href="#calc" class="btn">Рассчитать стоимость</a><br>
+<a href="#measure" class="btn">Заказать замер</a>
+</header>
+
+<section>
+<h2>Услуги</h2>
+<div class="grid">
+<div class="card">Бетонные полы</div>
+<div class="card">Полимерные полы</div>
+<div class="card">Армирование</div>
+<div class="card">Клининг после стройки</div>
+</div>
+</section>
+
+<section>
+<h2>Цены</h2>
+<div class="grid">
+<div class="card">Бетон до 10 мм<br><b>от 3 000 ₽/м²</b></div>
+<div class="card">Полимерные полы<br><b>от 3 500 ₽/м²</b></div>
+<div class="card">Клининг<br><b>от 200 ₽/м²</b></div>
+</div>
+<p style="text-align:center;font-size:12px;">
+Цена за бетон указана до 10 мм. При увеличении толщины стоимость выше
+</p>
+</section>
+
+<section id="calc">
+<h2>Калькулятор под ключ</h2>
+
+<div style="max-width:400px;margin:auto;display:flex;flex-direction:column;gap:15px;">
+
+<input type="number" id="area" placeholder="Площадь (м²)">
+
+<select id="type">
+<option value="3000">Бетон (от 3 000 ₽/м²)</option>
+<option value="3500">Полимер (от 3 500 ₽/м²)</option>
+</select>
+
+<select id="thick">
+<option value="1">до 10 мм</option>
+<option value="1.5">до 20 мм</option>
+<option value="2">до 30 мм</option>
+<option value="3">до 50 мм</option>
+</select>
+
+<select id="clean">
+<option value="0">Без клининга</option>
+<option value="200">Клининг 200 ₽/м²</option>
+<option value="300">Клининг 300 ₽/м²</option>
+</select>
+
+<button onclick="calc()">Рассчитать</button>
+
+<div id="result" style="text-align:center;font-size:18px;"></div>
+
+<button onclick="sendCalc()">Отправить расчет</button>
+
+</div>
+</section>
+
+<section id="measure">
+<h2>Заказать замер</h2>
+
+<div style="max-width:400px;margin:auto;display:flex;flex-direction:column;gap:15px;">
+
+<input type="text" id="name" placeholder="Ваше имя">
+<input type="tel" id="phone" placeholder="Телефон">
+<input type="text" id="addr" placeholder="Адрес">
+<input type="number" id="area2" placeholder="Площадь">
+
+<button onclick="sendMeasure()">Вызвать замерщика бесплатно</button>
+
+<p style="text-align:center;font-size:12px;">Ответим в течение 5–10 минут</p>
+
+</div>
+</section>
+
+<footer>
+📞 8 (953) 157-80-77 (менеджер по расчету и замеру)<br>
+СПб и Ленобласть<br><br>
+ИП Власов
+</footer>
+
+<a class="tg" href="https://t.me/+79531578077">Telegram</a>
+<a class="call" href="tel:89531578077">Позвонить</a>
+
+<script>
+function calc(){
+let a=document.getElementById('area').value;
+let t=document.getElementById('type').value;
+let th=document.getElementById('thick').value;
+let c=document.getElementById('clean').value;
+
+if(a<=0){return;}
+
+let floor=a*t*th;
+let clean=a*c;
+let total=floor+clean;
+let discount=total*0.1;
+let final=total-discount;
+
+document.getElementById('result').innerHTML=
+"Пол: "+floor.toLocaleString()+" ₽<br>"+
+"Клининг: "+clean.toLocaleString()+" ₽<br><br>"+
+"Скидка: -"+discount.toLocaleString()+" ₽<br>"+
+"<b>Итого: "+final.toLocaleString()+" ₽</b>";
+}
+
+function sendCalc(){
+let a=document.getElementById('area').value;
+window.open("https://t.me/+79531578077?text=Расчет "+a+" м²");
+}
+
+function sendMeasure(){
+let name=document.getElementById('name').value;
+let phone=document.getElementById('phone').value;
+let addr=document.getElementById('addr').value;
+let area=document.getElementById('area2').value;
+
+let text="Заявка на замер:%0AИмя: "+name+"%0AТелефон: "+phone+"%0AАдрес: "+addr+"%0AПлощадь: "+area+" м²";
+
+window.open("https://t.me/+79531578077?text="+text);
+}
+</script>
+
+</body>
+</html>
